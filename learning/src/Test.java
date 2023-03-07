@@ -1,13 +1,11 @@
 import common.Utils;
-import day01.PopSort;
-import day01.SelectSort;
-import day01.XorOperation;
+import day01.*;
 
 import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        XorTest();
+        BinaryQues1Test();
     }
 
     /**
@@ -35,7 +33,7 @@ public class Test {
             int[] arr2 = Arrays.copyOf(arr1, arr1.length);
 
             //调用方法一（待测方法）
-            PopSort.popSort(arr1);
+            InsertSort.insertSort(arr1);
             //调用方法二
             SelectSort.selectSort(arr2);
 
@@ -57,5 +55,26 @@ public class Test {
 
         int[] twoOdd = XorOperation.findTwoOdd(arr2);
         Utils.printArray(twoOdd);
+    }
+
+    public static void BinaryQues1Test(){
+        int[] arr = new int[]{1,3,4,5,12,24,56};
+        int[] arr2 = new int[]{1};
+        int[] arr3 = new int[]{};
+        int[] arr4 = new int[]{1,2};
+        int[] arr5 = new int[]{1,2,3};
+
+        //System.out.println(BinarySearch.binarySearch(arr, 25));
+        //System.out.println(BinarySearch.binarySearch(arr2, 3));
+        //System.out.println(BinarySearch.binarySearch(arr3, 3));
+        //System.out.println(BinarySearch.binarySearch(arr4, 3));
+        //System.out.println(BinarySearch.binarySearch(arr5, 3));
+
+
+        System.out.println(BinarySearch.binarySearchLeft(arr, 2));
+        System.out.println(BinarySearch.binarySearchLeft(arr2, 3));
+        System.out.println(BinarySearch.binarySearchLeft(arr3, 3));
+        System.out.println(BinarySearch.binarySearchLeft(arr4, 1));
+        System.out.println(BinarySearch.binarySearchLeft(arr5, 2));
     }
 }

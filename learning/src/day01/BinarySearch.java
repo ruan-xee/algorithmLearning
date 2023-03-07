@@ -14,12 +14,11 @@ public class BinarySearch {
 
     private static int binary(int[] arr, int head, int front, int target){
         int res = -1;
-        if (head > front){
-            return res;
-        } else if (head == front){
-            return arr[head] == target ? head : -1;
+        if (head == front){
+            return arr[head] == target ? head : res;
         }
-        int mid = (head + front)/2;
+        //int mid = (head + front)/2;
+        int mid = head + ((front - head) >> 1);
         if (arr[mid] == target){
             res = mid;
         } else if (arr[mid] < target){
@@ -43,10 +42,11 @@ public class BinarySearch {
 
     private static int binary2(int[] arr, int head, int front, int target){
         int res = -1;
-        if (head >= front){
+        if (head == front){
             return arr[front] >= target ? front : res;
         }
-        int mid = (head+front)/2;
+        //int mid = (head+front)/2;
+        int mid = head + ((front - head) >> 1);
         if (arr[mid] >= target){
             return binary2(arr, head, mid, target);
         } else {
@@ -66,11 +66,29 @@ public class BinarySearch {
         if (arr == null || arr.length < 2){
             return -1;
         }
+        //先剔除左右两头的特殊情形
         if (arr[0] < arr[1]){
             return 0;
         }
         if (arr[arr.length - 1] < arr[arr.length - 2]){
             return arr.length - 1;
+        }
+        return binary3(arr, 1, arr.length-2);
+    }
+
+    private static int binary3(int[] arr, int head, int front){
+        if (head > front){
+            return -1;
+        }
+        //int mid = (head+front)/2;     //有溢出风险
+        int mid = head + ((front - head) >> 1);
+        if (arr[mid] < arr[mid - 1] && arr[mid] > arr[mid + 1]){
+            return binary3(arr, mid+1, front);
+        } else if (arr[mid] < arr[mid - 1] && arr[mid] < arr[mid + 1]){
+            return mid;
+        }
+        if (arr[mid] > arr[mid - 1]){
+            return binary3(arr, head, mid-1);
         }
         return -1;
     }

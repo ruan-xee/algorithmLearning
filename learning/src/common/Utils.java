@@ -34,6 +34,18 @@ public class Utils {
         arr[i] = arr[i] ^ arr[j];
     }
 
+    /**
+     * 交换数组中的元素（通常的交换方式，可以自身与自身交换）
+     * @param arr
+     * @param i
+     * @param j
+     */
+    public static void swap2(int[] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
 
     /**
      * 打印数组

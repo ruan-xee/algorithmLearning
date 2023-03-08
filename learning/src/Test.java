@@ -1,6 +1,7 @@
 import common.Utils;
 import day01.*;
 import day02.MergeSort;
+import day02.QuickSort;
 import day02.SmallSum;
 
 import java.util.Arrays;
@@ -8,8 +9,7 @@ import java.util.Arrays;
 public class Test {
     public static void main(String[] args) {
         comparator();
-        int[] arr = new int[]{1,3,4,2,5};
-        System.out.println(SmallSum.smallSum(arr));
+
     }
 
     /**
@@ -26,7 +26,7 @@ public class Test {
      *      待发现错误时，可以通过缩小数组长度、数值范围等控制变量来进行debug修正
      */
     public static void comparator(){
-        int testTime = 200;    //比较次数
+        int testTime = 2000;    //比较次数
         int maxSize = 10;       //最大数组长度
         int maxValue = 100;     //最大值
         boolean succeed = true; //对比成功标志
@@ -35,9 +35,8 @@ public class Test {
             //得到两个相同长度、相同数值内容的数组
             int[] arr1 = Utils.generateRandomArray(maxSize, maxValue);
             int[] arr2 = Arrays.copyOf(arr1, arr1.length);
-            Utils.printArray(arr1);
             //调用方法一（待测方法）
-            MergeSort.mergeSort(arr1, 0, arr1.length-1);
+            QuickSort.quicksort(arr1);
             //调用方法二
             SelectSort.selectSort(arr2);
 
@@ -90,5 +89,10 @@ public class Test {
 //        System.out.println(BinarySearch.binaryFindPartMin(arr6));
 
 
+    }
+
+    public static void smallSumTest(){
+        int[] arr = new int[]{1,3,4,2,5};
+        System.out.println(SmallSum.smallSum(arr));
     }
 }

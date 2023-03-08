@@ -23,6 +23,25 @@ public class Utils {
     }
 
     /**
+     * 获取长度随机、内容数值随机的整型数组
+     * @param maxSize   最大长度
+     * @param maxValue  最大值
+     * @param minValue  最小值
+     * @return
+     */
+    public static int[] generateRandomArray(int maxSize, int maxValue, int minValue){
+        //Math.random() -> [0,1) 所有的小数，等概率返回一个
+        //Math.random() * N -> [0,N) 所有小数，等概率返回一个
+        //(int)(Math.random() * N) -> [0,N-1] 所有的整数，等概率返回一个
+
+        int[] arr = new int[(int) ((maxSize+1)* Math.random())];    //长度随机
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (int)((maxValue-minValue) * Math.random())+minValue;
+        }
+        return arr;
+    }
+
+    /**
      * 交换数组中的元素(两个交换的元素不能指向同一位置)
      * @param arr   数组
      * @param i     当前位置

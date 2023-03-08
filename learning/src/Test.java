@@ -3,6 +3,8 @@ import day01.*;
 import day02.MergeSort;
 import day02.QuickSort;
 import day02.SmallSum;
+import day03.HeapSort;
+import day03.RadixSort;
 
 import java.util.Arrays;
 
@@ -26,17 +28,18 @@ public class Test {
      *      待发现错误时，可以通过缩小数组长度、数值范围等控制变量来进行debug修正
      */
     public static void comparator(){
-        int testTime = 2000;    //比较次数
+        int testTime = 200;    //比较次数
         int maxSize = 10;       //最大数组长度
         int maxValue = 100;     //最大值
+        int minValue = 0;       //最小值
         boolean succeed = true; //对比成功标志
 
         for (int i = 0; i < testTime; i++) {
             //得到两个相同长度、相同数值内容的数组
-            int[] arr1 = Utils.generateRandomArray(maxSize, maxValue);
+            int[] arr1 = Utils.generateRandomArray(maxSize, maxValue, minValue);
             int[] arr2 = Arrays.copyOf(arr1, arr1.length);
             //调用方法一（待测方法）
-            QuickSort.quicksort(arr1);
+            RadixSort.radixSort(arr1);
             //调用方法二
             SelectSort.selectSort(arr2);
 

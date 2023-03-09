@@ -1,3 +1,4 @@
+import common.SingleNode;
 import common.Utils;
 import day01.*;
 import day02.MergeSort;
@@ -5,12 +6,14 @@ import day02.QuickSort;
 import day02.SmallSum;
 import day03.HeapSort;
 import day03.RadixSort;
+import day04.IsPalindromeList;
+import day04.SmallerEqualBigger;
 
 import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        comparator();
+        singleNodeTest();
 
     }
 
@@ -97,5 +100,31 @@ public class Test {
     public static void smallSumTest(){
         int[] arr = new int[]{1,3,4,2,5};
         System.out.println(SmallSum.smallSum(arr));
+    }
+
+    public static void singleNodeTest(){
+        SingleNode<Integer> node1 = new SingleNode(5);
+        SingleNode<Integer> node2 = new SingleNode(2);
+        node1.next = node2;
+        SingleNode<Integer> node3 = new SingleNode(4);
+        node2.next = node3;
+        SingleNode<Integer> node4 = new SingleNode(3);
+        node3.next = node4;
+        SingleNode<Integer> node5 = new SingleNode(4);
+        node4.next = node5;
+        SingleNode<Integer> node6 = new SingleNode(2);
+        node5.next = node6;
+        SingleNode<Integer> node7 = new SingleNode(5);
+        node6.next = node7;
+        SingleNode<Integer> node8 = new SingleNode(5);
+        //node7.next = node8;
+
+//        SingleNode<Integer> resHead = SmallerEqualBigger.listPartition(node1, 5);
+//        while (resHead != null){
+//            System.out.print(resHead.value + " -> ");
+//            resHead = resHead.next;
+//        }
+
+        System.out.println(IsPalindromeList.isPalindrome3(node1));
     }
 }

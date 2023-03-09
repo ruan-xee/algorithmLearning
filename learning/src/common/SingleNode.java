@@ -1,16 +1,16 @@
 package common;
 
-public class SingleNode{
-    public int value;
-    public SingleNode next;
+public class SingleNode<T>{
+    public T value;
+    public SingleNode<T> next;
 
     public SingleNode(){}
 
-    public SingleNode(int value){
+    public SingleNode(T value){
         this.value = value;
     }
 
-    public SingleNode(int value, SingleNode next) {
+    public SingleNode(T value, SingleNode<T> next) {
         this.value = value;
         this.next = next;
     }

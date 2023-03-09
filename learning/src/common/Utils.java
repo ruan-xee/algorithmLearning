@@ -23,7 +23,7 @@ public class Utils {
     }
 
     /**
-     * 获取长度随机、内容数值随机的整型数组
+     * 获取长度随机、内容数值在范围内随机的整型数组
      * @param maxSize   最大长度
      * @param maxValue  最大值
      * @param minValue  最小值

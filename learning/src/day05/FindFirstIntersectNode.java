@@ -9,15 +9,15 @@ import common.SingleNode;
 public class FindFirstIntersectNode {
 
     // 找到链表的第一个入环点，如果无环，返回null
-    public static SingleNode<Integer> getLoopNode(SingleNode<Integer> head){
-        if (head == null || head.next == null || head.next.next == null){
+    public static SingleNode<Integer> getLoopNode(SingleNode<Integer> head) {
+        if (head == null || head.next == null || head.next.next == null) {
             return null;
         }
         //先移动一步，使快慢指针能进入下列循环
         SingleNode<Integer> fast = head.next.next;
         SingleNode<Integer> slow = head.next;
-        while (fast != slow){
-            if (fast.next == null || fast.next.next == null){
+        while (fast != slow) {
+            if (fast.next == null || fast.next.next == null) {
                 return null;
             }
             fast = fast.next.next;
@@ -25,7 +25,7 @@ public class FindFirstIntersectNode {
         }
         //两点相遇，将fast指向头部，步进改为1，再次相遇时，为入环点
         fast = head;
-        while (fast != slow){
+        while (fast != slow) {
             fast = fast.next;
             slow = slow.next;
         }
@@ -33,8 +33,8 @@ public class FindFirstIntersectNode {
     }
 
     //如果两条链表无环，找它们是否相交
-    public static SingleNode<Integer> noLoop(SingleNode<Integer> head1, SingleNode<Integer> head2){
-        if (head1 == null || head2 == null){
+    public static SingleNode<Integer> noLoop(SingleNode<Integer> head1, SingleNode<Integer> head2) {
+        if (head1 == null || head2 == null) {
             return null;
         }
 
@@ -45,16 +45,16 @@ public class FindFirstIntersectNode {
         int list2Length = 1;
 
         // 找到两条链表的最后一个节点及链表长度，比较它们是否相等
-        while (cur1.next != null){
+        while (cur1.next != null) {
             list1Length++;
             cur1 = cur1.next;
         }
-        while (cur2.next != null){
+        while (cur2.next != null) {
             list2Length++;
             cur2 = cur2.next;
         }
         // 如果相等说明相交，不等说明没相交，返回null
-        if (cur1 != cur2){
+        if (cur1 != cur2) {
             return null;
         }
         cur1 = list1Length >= list2Length ? head1 : head2;  // 将长度长的链表给cur1
@@ -64,12 +64,60 @@ public class FindFirstIntersectNode {
             cur1 = cur1.next;
         }
 
-        while (cur1 != cur2){
+        while (cur1 != cur2) {
             cur1 = cur1.next;
             cur2 = cur2.next;
         }
         return cur1;
     }
 
+    // 如果两条链表都是回环结构的话，判断这两条链表是否相交
+    public static SingleNode<Integer> bothLoop (SingleNode<Integer> head1,
+                                               SingleNode<Integer> loop1,
+                                               SingleNode<Integer> head2,
+                                               SingleNode<Integer> loop2) {
+
+        SingleNode<Integer> cur1 = null;
+        SingleNode<Integer> cur2 = null;
+        // 在环之前相交的话
+        if (loop1 == loop2) {
+            cur1 = head1;
+            cur2 = head2;
+
+            int list1Length = 1;
+            int list2Length = 1;
+
+            // 找到两条链表的最后一个节点及链表长度，比较它们是否相等
+            while (cur1.next != loop1) {
+                list1Length++;
+                cur1 = cur1.next;
+            }
+            while (cur2.next != loop2) {
+                list2Length++;
+                cur2 = cur2.next;
+            }
+            cur1 = list1Length >= list2Length ? head1 : head2;  // 将长度长的链表给cur1
+            cur2 = cur1 == head1 ? head2 : head1;               // 将长度短的链表给cur2
+
+            for (int i = 0; i < Math.abs(list1Length-list2Length); i++) {
+                cur1 = cur1.next;
+            }
+
+            while (cur1 != cur2) {
+                cur1 = cur1.next;
+                cur2 = cur2.next;
+            }
+            return cur1;
+        } else {    // 在环中相交的话
+            cur2 = loop2;
+            while (cur2.next != loop2) {
+                if (cur2 == loop1) {
+                    return loop1;
+                }
+                cur2 = cur2.next;
+            }
+            return null;
+        }
+    }
 
 }

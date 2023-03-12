@@ -1,19 +1,18 @@
 import common.SingleNode;
+import day05.TreeNode;
 import common.Utils;
-import day01.*;
-import day02.MergeSort;
-import day02.QuickSort;
+import day01.BinarySearch;
+import day01.SelectSort;
+import day01.XorOperation;
 import day02.SmallSum;
-import day03.HeapSort;
 import day03.RadixSort;
 import day04.IsPalindromeList;
-import day04.SmallerEqualBigger;
 
 import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        singleNodeTest();
+        TreeNodeTest();
 
     }
 
@@ -126,5 +125,45 @@ public class Test {
 //        }
 
         System.out.println(IsPalindromeList.isPalindrome3(node1));
+    }
+
+
+    public static void TreeNodeTest(){
+        TreeNode<Integer> node1 = new TreeNode<>(1);
+        TreeNode<Integer> node2 = new TreeNode<>(2);
+        TreeNode<Integer> node3 = new TreeNode<>(3);
+        TreeNode<Integer> node4 = new TreeNode<>(4);
+        TreeNode<Integer> node5 = new TreeNode<>(5);
+        TreeNode<Integer> node6 = new TreeNode<>(6);
+        TreeNode<Integer> node7 = new TreeNode<>(7);
+        TreeNode<Integer> node8 = new TreeNode<>(8);
+        TreeNode<Integer> node9 = new TreeNode<>(9);
+        TreeNode<Integer> node10 = new TreeNode<>(10);
+        TreeNode<Integer> node11 = new TreeNode<>(11);
+
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node5.left = node6;
+        node6.left = node7;
+        node3.left = node8;
+        node3.right = node9;
+        node8.right = node10;
+        node10.left = node11;
+
+//        System.out.println("inOrderUnRecur:");
+//        TreeNode.inOrderUnRecur(node1);
+//        System.out.print("\ninOrderRecur:");
+//        TreeNode.inOrderRecur(node1);
+//        System.out.print("\npreOrderRecur:");
+//        TreeNode.preOrderRecur(node1);
+//        System.out.print("\npreOrderUnRecur:");
+//        TreeNode.preOrderUnRecur(node1);
+//        System.out.print("\nposOrderRecur:");
+//        TreeNode.posOrderRecur(node1);
+//        System.out.print("\nposOrderUnRecur:");
+//        TreeNode.posOrderUnRecur(node1);
+        System.out.println(TreeNode.findMaxWidth2(node1));
     }
 }

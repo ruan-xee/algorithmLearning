@@ -50,4 +50,68 @@ public class Code06_Dijkstra {
         }
         return minNode;
     }
+
+    public static class NodeHeap {
+        private Node[] nodes;
+        private HashMap<Node, Integer> headIndexMap;
+        private HashMap<Node, Integer> distanceMap;
+        private int size;
+
+        public NodeHeap(int size) {
+            nodes = new Node[size];
+            headIndexMap = new HashMap<>();
+            distanceMap = new HashMap<>();
+            this.size = 0;
+        }
+
+        public boolean isEmpty() {
+            return size == 0;
+        }
+
+        // node是否进入过堆中
+        private boolean isEntered(Node node) {
+            return headIndexMap.containsKey(node);
+        }
+
+        private boolean inHeap(Node node) {
+            // 以-1表示该node不在堆上但曾经进来过
+            return isEntered(node) && headIndexMap.get(node) != -1;
+        }
+
+        private void swap(int index1, int index2) {
+            headIndexMap.put(nodes[index1], index2);
+            headIndexMap.put(nodes[index2], index1);
+            Node temp = nodes[index1];
+            nodes[index1] = nodes[index2];
+            nodes[index2] = temp;
+        }
+    }
+
+    public static class NodeRecord {
+        public Node node;
+        public int distance;
+
+        public NodeRecord(Node node, int distance) {
+            this.node = node;
+            this.distance = distance;
+        }
+    }
+
+    // 改进后的dijkstra算法
+    // 从head出发，所有能到达的节点，生到达每个节点的最短路径记录并返回
+    public static HashMap<Node, Integer> dijkstra2(Node node, int size) {
+        NodeHeap nodeHeap = new NodeHeap(size);
+        nodeHeap.addOrUpdateOrIgnore(head, 0);
+        HashMap<Node, Integer> result = new HashMap<>();
+        while (!nodeHeap.isEmpty()) {
+            NodeRecord record = nodeHeap.pop();
+            Node cur = record.node;
+            int distance = record.distance;
+            for (Edge edge : cur.edges) {
+                nodeHeap.addOrUpdateOrIgnore(edge.to, edge.weight + distance);
+            }
+            result.put(cur, distance);
+        }
+        return result;
+    }
 }

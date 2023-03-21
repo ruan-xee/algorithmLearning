@@ -32,13 +32,21 @@ public class Code02_PrintAllSubsquences {
 
     public static void process(char[] str, int i, List<Character> res) {
         if (i == str.length) {
-            System.out.println(Arrays.toString(res.toArray()));
+            printList(res);
             return;
         }
         List<Character> resKeep = new ArrayList<>(res);
         resKeep.add(str[i]);
-        process(str, i + 1, resKeep);
-        List<Character> resNoInclude = new ArrayList<>(res);
-        process(str, i + 1, resNoInclude);
+        process(str, i + 1, resKeep);       // 要当前字符的路
+        List<Character> resNoInclude = copyList(res);
+        process(str, i + 1, resNoInclude);  // 不要当前字符的路
+    }
+
+    public static void printList(List<Character> res) {
+        //
+    }
+
+    public static List<Character> copyList(List<Character> list) {
+        return null;
     }
 }
